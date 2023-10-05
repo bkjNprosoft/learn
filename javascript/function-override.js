@@ -55,7 +55,6 @@ class Porsche extends Car {
   }
 }
 
-
 const porsche = new Porsche();
 
 porsche.engine = 'super-engine';

@@ -30,6 +30,7 @@ function FruitFunc(newName = 'fruit') {
 
 const fruit2 = FruitFunc('apple');
 console.log(fruit2.getName());
+
 fruit2.setName('banana');
 console.log(fruit2.getName());
 
