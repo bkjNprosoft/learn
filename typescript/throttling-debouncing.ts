@@ -2,10 +2,10 @@
 namespace ThrottlingDebouncing {
 
   /**
- * 쓰로틀링(throttling)
- * 함수가 실행되는 동안 다시 호출되지 않도록 하는 기술이다. 
- * 성능 최적화, 실행 횟수에 제한을 둘 때 사용한다.
- */
+   * 쓰로틀링(throttling)
+   * 함수가 실행되는 동안 다시 호출되지 않도록 하는 기술이다. 
+   * 성능 최적화, 실행 횟수에 제한을 둘 때 사용한다.
+   */
   let throttlingTimer: number = null;
   function throttling(func: Function, time: number = 200) {
     if (!throttlingTimer) {
