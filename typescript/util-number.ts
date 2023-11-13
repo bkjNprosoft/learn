@@ -12,7 +12,5 @@ namespace UtilNumber {
 
     return Math.floor(num * fixedNum) / fixedNum;
   }
-  console.log(floor(0.2193545, 2));
-
+  console.log(floor(0.2193545, 2)); // 0.21
 }
-

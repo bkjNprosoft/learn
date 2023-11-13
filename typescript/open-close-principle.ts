@@ -1,5 +1,8 @@
 namespace OpenClosePrinciple {
-
+  /** 
+   * https://ko.wikipedia.org/wiki/%EA%B0%9C%EB%B0%A9-%ED%8F%90%EC%87%84_%EC%9B%90%EC%B9%99
+   * 객체지향 설계 5대 원칙(SOLID)에서 개방 폐쇄의 원칙에 대해 알아본다.
+   */
   class Animal {
     name: string;
 

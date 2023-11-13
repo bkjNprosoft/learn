@@ -1,6 +1,5 @@
 
 namespace ThrottlingDebouncing {
-
   /**
    * 쓰로틀링(throttling)
    * 함수가 실행되는 동안 다시 호출되지 않도록 하는 기술이다. 
