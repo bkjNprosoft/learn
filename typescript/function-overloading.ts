@@ -10,7 +10,8 @@
  */
 namespace functionOverloading {
 
-  // 함수 오버로딩
+  // 기본적인 함수 오버로딩 
+  console.log('기본적인 함수 오버로딩');
   function add(a: string, b: string): string;
   function add(a: number, b: number): number;
   function add(a: any, b: any): string | number {
@@ -20,6 +21,7 @@ namespace functionOverloading {
   console.log(add('123', '321')); // 123321
 
   // 인터페이스 또는 타입을 활용한 함수 오버로딩
+  console.log('인터페이스 또는 타입을 활용한 함수 오버로딩');
   interface Dodo {
     (value: number): object;
     (value: string, value2: string): object;
@@ -36,6 +38,7 @@ namespace functionOverloading {
   // console.log(dodo(123, "two")); // 컴파일 시점에서 타입이 일치하지 않는다는 에러 발생
 
   // 콜백을 활용한 함수 오버로딩
+  console.log('콜백을 활용한 함수 오버로딩');
   const dodo2: Dodo = (value: number | string, value2: string = 'none'): object => { return { num: value, str: value2 } };
   function dodoOverloading(callback: Dodo, num: number | string, str: string = 'aaa') {
     if (typeof num === 'string') {
@@ -50,6 +53,7 @@ namespace functionOverloading {
   console.log(dodoOverloading(dodo2, "1109", "hello")); // { num: '1109', str: 'hello' }
 
   // 타입에 따른 분기 함수를 이용한 오버로딩
+  console.log('타입에 따른 분기 함수를 이용한 오버로딩');
   function numberCombine(a: number, b: number): number { return a + b; }
   function stringCombine(a: string, b: string): string { return a + b; }
   function objectCombine(a: object, b: object): object { return Object.assign({ ...a }, b); }
@@ -70,7 +74,7 @@ namespace functionOverloading {
   console.log(combineOverloading(7, 44)); // numberCombine(a, b) 호출
   console.log(combineOverloading('name is ', 'trevor1107')); // stringCombine(a, b) 호출
   console.log(combineOverloading({ name: '희망' }, { name: '행복', value: 200 })); // objectCombine(a, b) 호출
-  
+    
   console.log('----------------------------------------------------------------');
   // ----------------------------------------------------------------
   // 메서드 오버로딩
