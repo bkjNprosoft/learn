@@ -1,13 +1,13 @@
-/**
- * 클래스 데코레이터 (Class Decorators)
- * 클래스 데코레이터는 클래스 선언 직전에 선언된다. 클래스 데코레이터는 클래스 생성자에 적용되며
- * 클래스 정의를 관찰, 수정 또는 교체하는 데 사용할 수 있다.
- * 
- * 클래스 데코레이터 매개변수로는 클래스 생성자 자체를 받게 되는 특징이 있다.
- * function reportableClassDecorator<T extends { new (...args: any[]): {} }>(constructor: T)
- * 리턴 값으로는 class 또는 void 이다.
- * 
- * 클래스 데코레이터에서 추가한 데이터에 접근하기 위해서는 클래스 내부에 프로퍼티를 추가해 주어야 한다.
+/*
+  클래스 데코레이터 (Class Decorators)
+  클래스 데코레이터는 클래스 선언 직전에 선언된다. 클래스 데코레이터는 클래스 생성자에 적용되며
+  클래스 정의를 관찰, 수정 또는 교체하는 데 사용할 수 있다.
+  
+  클래스 데코레이터 매개변수로는 클래스 생성자 자체를 받게 되는 특징이 있다.
+  function reportableClassDecorator<T extends { new (...args: any[]): {} }>(constructor: T)
+  리턴 값으로는 class 또는 void 이다.
+  
+  클래스 데코레이터에서 추가한 데이터에 접근하기 위해서는 클래스 내부에 프로퍼티를 추가해 주어야 한다.
  */
 namespace ClassDecorators {
   function commonClassDecorators<T extends { new (...args: any[]): {} }>(constructor: T) {
@@ -29,10 +29,10 @@ namespace ClassDecorators {
   console.log(alpaca); // Alpaca { name: 'MooMoo', id: 'ekmuxh71e' }
   // console.log(alpaca.id) // error: 해당 프로퍼티가 정의되지 않아 접근 불가
 
-  /**
-   * - Console Log -
-   * [class Alpaca]
-   * Alpaca { name: 'MooMoo', id: 'ekmuxh71e' }
+  /*
+    - Console Log -
+    [class Alpaca]
+    Alpaca { name: 'MooMoo', id: 'ekmuxh71e' }
    */
 
   // 데코레이터 팩토리를 응용한 클래스 데코레이터

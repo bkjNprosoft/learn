@@ -1,7 +1,8 @@
+/* 
+  타입스크립트에서 enum을 지원하지만 Tree-shaking 문제가 있어서 해결하기 위한 방법이다.
+  https://engineering.linecorp.com/ko/blog/typescript-enum-tree-shaking
+ */
 namespace ConstEnumType {
-  /** 타입스크립트에서 enum을 지원하지만 Tree-shaking 문제가 있어서 해결하기 위한 방법이다.
-   * https://engineering.linecorp.com/ko/blog/typescript-enum-tree-shaking
-  */
   export const hero_type = {
     WARRIOR: "Warrior", 
     WIZARD: "Wizard",

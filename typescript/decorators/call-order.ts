@@ -1,5 +1,5 @@
-/**
- * 데코레이터 호출 순서를 확인해보자.
+/*
+  데코레이터 호출 순서를 확인해보자.
  */
 namespace DecoratorCallOrder {
   function classDecorator() {
@@ -41,20 +41,20 @@ namespace DecoratorCallOrder {
     }
   }
 
-  /**
-   * - Console Log -
-   * property
-   * property decorator
-   * method
-   * parameter
-   * parameter decorator
-   * method decorator
-   * class
-   * class decorator
-   * 
-   * 데코레이터 표현의 경우 아래 순서와 같다.
-   * property -> method -> parameter -> class
-   * 데코레이터 결과는 아래 순서와 같다.
-   * property -> parameter -> method -> class
+  /*
+    - Console Log -
+    property
+    property decorator
+    method
+    parameter
+    parameter decorator
+    method decorator
+    class
+    class decorator
+    
+    데코레이터 표현의 경우 아래 순서와 같다.
+    property -> method -> parameter -> class
+    데코레이터 결과는 아래 순서와 같다.
+    property -> parameter -> method -> class
    */
 }
