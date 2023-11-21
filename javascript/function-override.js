@@ -10,10 +10,12 @@
     engine;
 
     // 2번 get, set 오버라이딩 테스트
+    /** @returns {string} */
     get wheel() {
       return this._wheel;
     }
 
+    /** @param {string} wheel */
     set wheel(wheel) {
       this._wheel = wheel;
     }
@@ -27,6 +29,7 @@
 
   class Porsche extends Car {
     // 1번 테스트, 호출되지 않음, 부모 프로퍼티가 변수로 선언되어 있어서 그렇다. 경고나 에러도 없음
+    /** @returns {string} */
     get engine() {
       return `porsche ${this.engine}`;
     }
