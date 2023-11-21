@@ -1,13 +1,13 @@
-/**
- * 프로퍼티 데코레이터 (Property Decorators)
- * 프로퍼티 데코레이터는 프로퍼티 선언 바로 전에 선언된다. 
- * 프로퍼티 데코레이터는 선언 파일이나 다른 주변 컨텍스트에서 사용할 수 없다.
- * 
- * 프로퍼티 데코레이터의 표현 식은 런타임에 다음 두 개의 인수와 함께 함수로 호출된다.
- * function propertyDecorator(target: any, propertyKey: string) {}
- * 1. 정적 멤버에 대한 클래스의 생성자 함수 또는 인스턴스 멤버에 대한 클래스의 프로토타입
- * 2. 멤버의 이름
- * 리턴 값으로는 Property Descriptor 또는 void 이다.
+/*
+  프로퍼티 데코레이터 (Property Decorators)
+  프로퍼티 데코레이터는 프로퍼티 선언 바로 전에 선언된다. 
+  프로퍼티 데코레이터는 선언 파일이나 다른 주변 컨텍스트에서 사용할 수 없다.
+  
+  프로퍼티 데코레이터의 표현 식은 런타임에 다음 두 개의 인수와 함께 함수로 호출된다.
+  function propertyDecorator(target: any, propertyKey: string) {}
+  1. 정적 멤버에 대한 클래스의 생성자 함수 또는 인스턴스 멤버에 대한 클래스의 프로토타입
+  2. 멤버의 이름
+  리턴 값으로는 Property Descriptor 또는 void 이다.
  */
 namespace PropertyDecorators {
   function readOnlyDecoratorFactory (obj: { className:string, type: string, id?: string}) {
@@ -59,30 +59,30 @@ namespace PropertyDecorators {
   koala.unique.id = 1004; // Object property readOnly로 인해서 변하지 않음
   console.log(koala.unique); // { className: 'Koala', type: 'cute', id: 'Koala_68wmfokgs' }
 
-  /**
-   * - Console Log -
-   * {}
-   * unique
-   * Koala { readonlyData: { aa: 'aa' }, name: 'Sis' }
-   * { className: 'Koala', type: 'cute', id: 'Koala_k1zhp7jf2' }
-   * { className: 'Koala', type: 'cute', id: 'Koala_k1zhp7jf2' }
+  /*
+    - Console Log -
+    {}
+    unique
+    Koala { readonlyData: { aa: 'aa' }, name: 'Sis' }
+    { className: 'Koala', type: 'cute', id: 'Koala_k1zhp7jf2' }
+    { className: 'Koala', type: 'cute', id: 'Koala_k1zhp7jf2' }
    */
 
-  /**
-   * this 바인딩을 통해 데이터를 넘겨주지 않았을 경우에 데코레이터의 this는 아래와 같았다.
-   * <ref *1> Object [global] {
-   *     global: [Circular *1],
-   *     clearInterval: [Function: clearInterval],
-   *     clearTimeout: [Function: clearTimeout],
-   *     setInterval: [Function: setInterval],
-   *     setTimeout: [Function: setTimeout] {
-   *       [Symbol(nodejs.util.promisify.custom)]: [Getter]
-   *     },
-   *     queueMicrotask: [Function: queueMicrotask],
-   *     clearImmediate: [Function: clearImmediate],
-   *     setImmediate: [Function: setImmediate] {
-   *       [Symbol(nodejs.util.promisify.custom)]: [Getter]
-   *     }
-   *   }
+  /*
+    this 바인딩을 통해 데이터를 넘겨주지 않았을 경우에 데코레이터의 this는 아래와 같았다.
+    <ref *1> Object [global] {
+        global: [Circular *1],
+        clearInterval: [Function: clearInterval],
+        clearTimeout: [Function: clearTimeout],
+        setInterval: [Function: setInterval],
+        setTimeout: [Function: setTimeout] {
+          [Symbol(nodejs.util.promisify.custom)]: [Getter]
+        },
+        queueMicrotask: [Function: queueMicrotask],
+        clearImmediate: [Function: clearImmediate],
+        setImmediate: [Function: setImmediate] {
+          [Symbol(nodejs.util.promisify.custom)]: [Getter]
+        }
+      }
    */
 }

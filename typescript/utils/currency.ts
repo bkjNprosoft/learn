@@ -1,6 +1,5 @@
 namespace UtilCurrency {
-
-  /** 한국 통화 기준으로 다른 나라의 화폐로 전환하는 기능을 테스트 */
+  // 한국 통화 기준으로 다른 나라의 화폐로 전환하는 기능을 테스트
   export const exchange_base = {
     // 2023-11-01 18:40 기준
     KRW: 1, // 한국 원

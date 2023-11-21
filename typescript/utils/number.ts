@@ -1,5 +1,4 @@
 namespace UtilNumber {
-
   function floor(num: number, fixed: number): number {
     if (num == null || fixed == null) {
       return undefined;

@@ -1,13 +1,13 @@
-/**
- * https://www.typescriptlang.org/docs/handbook/2/functions.html#function-overloads
- * https://www.typescriptlang.org/docs/handbook/declaration-files/by-example.html#overloaded-functions
- * https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html#function-overloads
- * 
- * 타입스크립트 함수 오버로딩
- * 자바스크립트나 타입스크립트에서는 같은 이름의 함수를 여러 번 정의할 수 없다.
- * 함수 선언을 통해 다양한 인수에 대한 개수 및 타입을 지정하여 호출될 수는 있다.
- * 따라서 하나의 함수에 조건문을 통해 모든 오버 로딩 인수에 대한 기능을 정의해야 한다.
- */
+/*
+  https://www.typescriptlang.org/docs/handbook/2/functions.html#function-overloads
+  https://www.typescriptlang.org/docs/handbook/declaration-files/by-example.html#overloaded-functions
+  https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html#function-overloads
+  
+  타입스크립트 함수 오버로딩
+  자바스크립트나 타입스크립트에서는 같은 이름의 함수를 여러 번 정의할 수 없다.
+  함수 선언을 통해 다양한 인수에 대한 개수 및 타입을 지정하여 호출될 수는 있다.
+  따라서 하나의 함수에 조건문을 통해 모든 오버 로딩 인수에 대한 기능을 정의해야 한다.
+*/
 namespace functionOverloading {
 
   // 기본적인 함수 오버로딩 
