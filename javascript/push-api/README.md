@@ -1,17 +1,15 @@
 # Javascript Push API 사용 예제
 
+<figure>
+  <img src="web-push-protocol-process.png" alt="ⓒ근둥이의 블로그 웹 푸시 아키텍처"/>
+  <figcaption>ⓒ근둥이의 블로그 웹 푸시 아키텍처</figcaption>
+</figure>
+
 Javascript Push API를 사용하여 모바일 및 PC(windows)에 푸시 알람 기능에 대한 예제입니다.
 
 자세한 내용은 [W3C - Push API](https://www.w3.org/TR/push-api/) [MDN - Push API](https://developer.mozilla.org/ko/docs/Web/API/Push_API), [web.dev - 푸시 알림 개요](https://web.dev/articles/push-notifications-overview?hl=ko)를 참고하시길 바랍니다.
 
 모바일로 로컬 호스트 접속을 위해 [ngrok](https://www.npmjs.com/package/ngrok) 패키지를 이용합니다. https 임시 주소를 발행하여 포트 포워딩을 통해 로컬 호스트에 접속할 수 있도록 도와주는 패키지 입니다.
-
-## 웹 푸시 프로토콜 절차
-
-<figure>
-  <img src="web-push-protocol-process.png" alt="ⓒ근둥이의 블로그 웹 푸시 아키텍처"/>
-  <figcaption>ⓒ근둥이의 블로그 웹 푸시 아키텍처</figcaption>
-</figure>
 
 ## 패키지 설치
 
