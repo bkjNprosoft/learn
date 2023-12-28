@@ -1,7 +1,7 @@
 # Javascript Push API 사용 예제
 
 <figure>
-  <img src="web-push-protocol-process.png" alt="ⓒ근둥이의 블로그 웹 푸시 아키텍처"/>
+  <img src="./img/web-push-protocol-process.png" alt="ⓒ근둥이의 블로그 웹 푸시 아키텍처"/>
   <figcaption>ⓒ근둥이의 블로그 웹 푸시 아키텍처</figcaption>
 </figure>
 
@@ -24,6 +24,6 @@ nodejs 실행
 `npm start`
 
 (필수 아님) 로컬 호스트 주소의 모바일 접속을 위해 아래 명령어를 입력해 준다.
-7274는 포트 번호 이다. `./bin/www` 파일에서 변경이 가능하다.
+7274는 포트 번호이다. 포트 번호는 `./bin/www` 파일에서 변경이 가능하다.
 
 `ngrok http 7274`
