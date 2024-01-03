@@ -14,7 +14,7 @@ const app = express();
  * VAPID Key 생성 명령어: web-push generate-vapid-keys
  */
 const vapidPublicKey = 'Your VAPID Public Key';
-const vapidPrivateKey = 'Your VAPID Private Key';
+const vapidPrivateKey = 'Your VAPID private Key';
 webPush.setVapidDetails(
   'mailto:your-email@example.com',
   vapidPublicKey,
@@ -38,7 +38,7 @@ const subs = [];
 
 app.post('/subscribe', (req, res) => {
   const subscription = req.body;
-  console.log('subscribe', subscription);
+  console.log('post subscription:', subscription);
 
   // 중복을 방자히여 구독한 클라이언트를 추가
   let isIncludes = subs.some(sub => sub.endpoint === subscription.endpoint);
@@ -49,23 +49,48 @@ app.post('/subscribe', (req, res) => {
   res.status(201).json({});
 });
 
-app.post('/send-notification', (req, res) => {
-  console.log('send-notification');
+app.get('/subscription', (req, res) => {
+  const { endpoint } = req.query;
+  const findSubscription = subs.find(sub => sub.endpoint === endpoint);
+  console.log('findSubscription', findSubscription);
+
+  let result = {
+    endpoint
+  };
+
+  if (!findSubscription) {
+    result = {
+      message: 'not found',
+    };
+  }
+  res.status(200).json(result);
+});
+
+app.delete('/subscription', (req, res) => {
+  const subscription = req.body;
+  console.log('delete subscription:', subscription);
+
+  const findIdx = subs.findIndex(sub => sub.endpoint === subscription.endpoint);
+  if (findIdx !== -1) {
+    subs.splice(findIdx, 1);
+  }
+
+  res.status(204).json({});
+})
+
+app.post('/send-notification', async (req, res) => {
+  console.log('send-notification, subs:', subs.length);
 
   // 구독한 클라이언트에게 푸시 이벤트를 전송한다.
   for (const sub of subs) {
-    webPush.sendNotification(sub, '네이버로 이동하겠습니까?')
-      .then(res => {
-        // 푸시 이벤트 전송 성공
-      })
-      .catch(err => {
+    await webPush.sendNotification(sub, '네이버로 이동하겠습니까?').catch(err => {
         console.error(err);
-        // 푸시 구독이 만료되었거나 취소한 경우(알림 차단 등)
+        // 푸시 구독이 만료되었거나 취소한 경우(알림 차단 등) 구독 정보에서 제거한다.
         if ([404, 410].includes(err.statusCode)) {
           const index = subs.findIndex(sub => sub.endpoint === err.endpoint);
           subs.splice(index, 1);
         }
-      })
+      });
   }
   res.status(200).json({});
 });
