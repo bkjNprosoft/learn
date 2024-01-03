@@ -21,7 +21,7 @@ self.addEventListener('push', event => {
   event.waitUntil(self.registration.showNotification('브라우저 이동', options));
 });
 
-// 알림(푸시) 클릭 이벤트 핸들러
+// 알림(푸시) 창 클릭 이벤트 핸들러
 self.addEventListener('notificationclick', event => {
   event.notification.close();
   console.log('Notification clicked:', event.notification);
