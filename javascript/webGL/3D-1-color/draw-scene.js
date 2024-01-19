@@ -18,7 +18,7 @@ function drawScene(gl, programInfo, buffers, cubeRotation) {
   // 시야는 45도, 너비/높이는 캔버스 표시 크기와 일치하는 비율로 설정합니다.
   // 그리고 0.1 단위 사이의 물체만 보여줍니다. 카메라에서 100 units 떨어져있습니다.
 
-  const fieldOfView = (45 * Math.PI) / 100;
+  const fieldOfView = (45 * Math.PI) / 180; // 시야 범위, radian
   const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
   const zNear = 0.1;
   const zFar = 100.0;
