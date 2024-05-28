@@ -5,7 +5,7 @@ namespace UtilStyles {
     defaultColor: string; // 기본 색상
   }
   
-  export function getNumberColor(num: number, options?: NumberColorOptions) {
+  export function getNumberStatusColor(num: number, options?: NumberColorOptions) {
     options = Object.assign({
       positiveColor: 'dodgerblue',
       negativeColor: 'red',
@@ -21,7 +21,7 @@ namespace UtilStyles {
     return { color };
   }
 
-  console.log(getNumberColor(100));
+  console.log(getNumberStatusColor(100));
 
   // ----------------------------------------------------------------
   
