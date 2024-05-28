@@ -64,7 +64,7 @@
     // c();
 
     // await 키워드를 사용하지 않아 위의 일반적인 함수 호출과 다르지 않다.
-    console.log('start');
+    console.log('start()');
     Promise.all([a(), b(), c()]);
     console.log('start done');
   }
@@ -91,7 +91,7 @@
     a done
   */
 
-  awaitStart();
+  // awaitStart();
   /*
     a start
     a promise start
@@ -104,5 +104,36 @@
     a setTimeout promise done
     a done
     await start done          ---- await으로 Promise all을 기다려서 나중에 호출
+  */
+
+  // Promise의 then과 catch 또한 await으로 해당 함수의 리턴을 기다릴 수 있다.
+  async function awaitPromise(bool) {
+    console.log(`awaitPromise(${bool}) start`);
+
+    await new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (bool === true) {
+          resolve('resolved');
+        } else {
+          reject('rejected');
+        }
+      }, 50);
+    }).then(val => {
+      console.log(val);
+    }).catch(err => {
+      console.log(err);
+    })
+    console.log('awaitPromise done');
+  }
+
+  awaitPromise(true);
+  awaitPromise();
+  /*
+    awaitPromise(true) start
+    awaitPromise(undefined) start
+    resolved
+    awaitPromise done
+    rejected
+    awaitPromise done
   */
 }
