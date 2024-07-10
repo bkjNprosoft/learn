@@ -1,5 +1,10 @@
 {
   /*
+    async function
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
+    await
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await
+    
     async 키워드를 사용한 함수는 Promise를 리턴한다.
     await 키워드는 Promise의 이행 또는 거부를 기다린다.
     Promise에서 이행, 거부를 기다리지 않는다면, 일반 함수와 똑같이 동작한다. 
