@@ -1,15 +1,14 @@
+/*
+  생성자 내부에서, 클래스의 인스턴스가 인스턴스화되었을 때 요소가 가질 모든 
+  기능을 정의합니다. 이 경우 우리는 shadow root을 사용자 정의 요소에 부착하고, 
+  몇 가지 DOM 조작을 사용하여 요소의 내부 shadow DOM 구조를 생성하는데, 
+  이는 그리고서 shadow root에 부착됩니다. 그리고 마지막으로 몇 가지 CSS를 
+  shadow root에 부착하여 shadow DOM을 꾸밉니다.
+  https://developer.mozilla.org/ko/docs/Web/API/Web_components/Using_shadow_DOM
+ */
 class PopupInfo extends HTMLElement {
   constructor() {
     super();
-
-    /**
-     * 생성자 내부에서, 클래스의 인스턴스가 인스턴스화되었을 때 요소가 가질 모든 
-     * 기능을 정의합니다. 이 경우 우리는 shadow root을 사용자 정의 요소에 부착하고, 
-     * 몇 가지 DOM 조작을 사용하여 요소의 내부 shadow DOM 구조를 생성하는데, 
-     * 이는 그리고서 shadow root에 부착됩니다. 그리고 마지막으로 몇 가지 CSS를 
-     * shadow root에 부착하여 shadow DOM을 꾸밉니다.
-     * https://developer.mozilla.org/ko/docs/Web/API/Web_components/Using_shadow_DOM
-     */
 
     // shadow root를 생성
     this.attachShadow({ mode: "open" });
