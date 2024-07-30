@@ -14,6 +14,10 @@ class PopupInfo extends HTMLElement {
     // shadow root를 생성
     this.attachShadow({ mode: "open" });
 
+    let name: string = 'aa';
+    console.log(name);
+    console.log('cc');
+
     // span 요소들을 생성
     const wrapper = document.createElement('span');
     wrapper.setAttribute('class', 'wrapper');
@@ -25,7 +29,7 @@ class PopupInfo extends HTMLElement {
 
     const icon = document.createElement('span');
     icon.setAttribute('class', 'icon'); // icon.className = 'icon';
-    icon.setAttribute('tabindex', 0);
+    icon.setAttribute('tabindex', '0');
 
     const info = document.createElement('span');
     info.setAttribute('class', 'info');
