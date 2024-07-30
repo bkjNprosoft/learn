@@ -7,8 +7,9 @@
     {
       "type": "chrome",
       "request": "launch",
-      "name": "Launch HTML for Chrome",
-      "file": "${file}"
+      "name": "Launch Chrome localhost",
+      "url": "http://localhost:5500/${relativeFileDirname}",
+      "webRoot": "${workspaceFolder}",
     },
     {
       "type": "node",
@@ -17,7 +18,7 @@
       "preLaunchTask": "tsc: build - tsconfig.json",
       "program": "${file}",
       "outFiles": [
-        "${fileDirname}/*.js",
+        "${workspaceFolder}/typescript/out/**/*.js",
       ]
     },
     {
@@ -27,7 +28,7 @@
       "preLaunchTask": "tsc: watch - tsconfig.json",
       "program": "${file}",
       "outFiles": [
-        "${fileDirname}/*.js",
+        "${workspaceFolder}/typescript/out/**/*.js",
       ]
     }
   ]
