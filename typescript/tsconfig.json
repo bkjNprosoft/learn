@@ -3,7 +3,6 @@
     "target": "ES2020",
     "module": "ES2020",
     "sourceMap": true,
-    "experimentalDecorators": true,
-    "rootDir": "./"
+    "experimentalDecorators": true
   }
 }
