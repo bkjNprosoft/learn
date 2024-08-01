@@ -10,5 +10,5 @@ HTML 파일에서 `<script type="module" src="*.js"></script>`으로 설정되�
 
 1. VSCode 확장 프로그램: `Live Server`를 설치하고 실행하여 경로만 맞으면 언제든 HTML 파일을 실행할 수 있습니다.
 <https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer>
-2. NPM 패키지 즉시 실행 : `npx http-server`
+2. NPM 패키지 즉시 실행: `npx http-server`
 <https://www.npmjs.com/package/http-server>
