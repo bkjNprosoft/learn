@@ -15,3 +15,9 @@ WebGL에는 내장된 지식이 많지 않다. 단지 사용자가 제공하는 
 > 조명 기술에 대한 설명
 <https://en.wikipedia.org/wiki/Phong_shading>
 <https://webglfundamentals.org/webgl/lessons/webgl-3d-lighting-point.html>
+
+## 실행 방법
+
+module을 사용하는 JS 파일은 그냥 실행시키면 File 프로토콜로 열리므로 CORS 에러가 발생할 수 있다. 따라서 아래 문서를 참고하여 실행한다.
+
+[module 방식의 HTML 파일 실행하기](../../README.md)
