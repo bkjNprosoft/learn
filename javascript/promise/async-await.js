@@ -131,8 +131,8 @@
     console.log('awaitPromise done');
   }
 
-  awaitPromise(true);
-  awaitPromise();
+  // awaitPromise(true);
+  // awaitPromise();
   /*
     awaitPromise(true) start
     awaitPromise(undefined) start
@@ -141,4 +141,27 @@
     rejected
     awaitPromise done
   */
+
+  function sendEmail(userEmail) {
+    return new Promise(async (resolve, reject) => {
+      setTimeout(() => {
+        resolve(`Email Sent to ${userEmail}`);
+      }, 3000);
+    });
+  }
+
+  async function sendEmails() {
+    const userEmails = ['a1@gmail.com', 'b2@gmail.com', 'c3@gmail.com'];
+    const status = await Promise.all(userEmails.map(async email => await sendEmail(email)));
+    console.log("Status =>", status);
+  }
+
+  sendEmails();
+  /*
+    Status => [
+      'Email Sent to a1@gmail.com',
+      'Email Sent to b2@gmail.com',
+      'Email Sent to c3@gmail.com'
+    ]
+   */
 }
