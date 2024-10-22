@@ -10,11 +10,10 @@
 
 ## 실행을 위한 준비 작업
 
-1. Redis 설치
-2. Redis 실행 (윈도우의 경우 WSL에서 `sudo service redis-server start`)
-3. npm install로 의존성 모듈 설치
-4. npm start로 백엔드 실행
-5. npm run worker로 bullMQ worker을 실행
+1. Redis 설치 및 실행 <https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/>
+2. npm install로 의존성 모듈 설치
+3. npm start로 백엔드 실행
+4. npm run worker로 bullMQ worker을 실행
 
 ### 페이지 설명
 
