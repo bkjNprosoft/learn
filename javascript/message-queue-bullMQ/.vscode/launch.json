@@ -11,7 +11,7 @@
       "internalConsoleOptions": "neverOpen",
     },
     {
-      "name": "Launch npm nodemon",
+      "name": "attach node",
       "type": "node",
       "request": "attach",
       "processId": "${command:PickProcess}",
