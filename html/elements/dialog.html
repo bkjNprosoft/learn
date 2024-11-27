@@ -1,0 +1,145 @@
+<!-- 
+  2022-02-21(화) <dialog> 이해하기
+  1. dialog 태그 사용해보기
+  2. backdrop 클릭시 dialog close
+-->
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dialog Element</title>
+  <style type="text/css">
+    body {
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    main {
+      display: flex;
+      height: 70vh;
+      color: gray;
+    }
+
+    dialog {
+      border: 2px solid rgb(80, 140, 230);
+      border-radius: 5px;
+    }
+
+    dialog::backdrop {
+      background-color: rgba(0, 0, 0, 0.2);
+      /* backdrop의 필터 속성은 filter가 아닌 backdrop-filter를 사용해야한다. */
+      backdrop-filter: blur(1px);
+    }
+
+    button {
+      color: #668ba4;
+      border: 2px solid #97cba9;
+      border-radius: 5px;
+      background: none;
+    }
+
+    button:hover {
+      background-color: #97cba9;
+      cursor: pointer;
+    }
+
+    .show-btn {
+      display: block;
+      width: 6rem;
+      height: 2rem;
+      margin: auto;
+
+    }
+
+    .modal-btn {
+      padding: 0.5rem;
+      /* @apply border-solid border-2 rounded-lg p-2 mt-2 border-sky-300 hover:bg-sky-300 */
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .justify-between {
+      justify-content: space-between;
+    }
+
+    .justify-center {
+      justify-content: center;
+    }
+
+    .align-center {
+      align-items: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+    <button class="show-btn">Show Modal</button>
+  </main>
+
+  <dialog id="dialog-1">
+    <p>구독에 동의하십니까?</p>
+    <form method="dialog" class="flex justify-between">
+      <button value="cancel" class="modal-btn">취소</button>
+      <button value="confirm" class="modal-btn">확인</button>
+    </form>
+  </dialog>
+
+  <dialog id="dialog-2">
+    <div class="flex justify-center align-center" style="width: 15rem; height: 10rem;">
+      <p>구독이 완료되었습니다.</p>
+    </div>
+  </dialog>
+
+</body>
+
+<script>
+  /** @type {HTMLButtonElement} */
+  const showBtn = document.querySelector('.show-btn');
+  /** @type {HTMLDialogElement} */
+  const dialogOne = document.querySelector('#dialog-1');
+  /** @type {HTMLDialogElement} */
+  const dialogTwo = document.querySelector('#dialog-2');
+
+  showBtn.addEventListener('click', () => {
+    dialogOne.showModal();
+  })
+
+  dialogOne.addEventListener('close', (event) => {
+    /**
+     * event.returnValue는 close이벤트에 대한 리턴 값으로 true를 반환한다.
+     * 따라서 event가 아닌 dialogOne 요소의 returnValue의 값을 확인한다.
+     * dialogOne.returnValue의 값은 form 요소의 자식인 button 요소의 value 값이다.
+     * */
+    if (dialogOne.returnValue === 'confirm') {
+      dialogTwo.showModal();
+    }
+  })
+
+  // backdrop 클릭시 닫히는 이벤트 함수
+  dialogTwo.addEventListener('click', function (event) {
+    /**
+      * target === this 조건으로 close를 한다면 dialog 상자 안에 빈 곳을 클릭해도 닫힌다.(this 바인딩에 주의)
+      * 정확하게 dialog 바깥인 backdrop 클릭시에만 이벤트를 호출하려면 클릭 포인트가 
+      * 상자 내부에 있는지를 체크하기 위해 left right top bottom을 확인해야한다.
+      */
+    /** @type {HTMLDialogElement} */
+    const target = event.target;
+    const rect = target.getBoundingClientRect();
+    if (rect.left > event.clientX ||
+      rect.right < event.clientX ||
+      rect.top > event.clientY ||
+      rect.bottom < event.clientY
+    ) {
+      dialogTwo.close();
+    }
+  })
+</script>
+
+</html>

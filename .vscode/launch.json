@@ -5,16 +5,16 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch Chrome localhost",
       "type": "chrome",
       "request": "launch",
+      "name": "Launch Chrome localhost",
       "url": "http://localhost:5500/${relativeFileDirname}",
       "webRoot": "${workspaceFolder}",
     },
     {
-      "name": "Launch Build Typescript",
       "type": "node",
       "request": "launch",
+      "name": "Launch Build Typescript",
       "preLaunchTask": "tsc: build - tsconfig.json",
       "program": "${file}",
       "outFiles": [
@@ -22,9 +22,9 @@
       ]
     },
     {
-      "name": "Launch Watch Typescript",
       "type": "node",
       "request": "launch",
+      "name": "Launch Watch Typescript",
       "preLaunchTask": "tsc: watch - tsconfig.json",
       "program": "${file}",
       "outFiles": [
