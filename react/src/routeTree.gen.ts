@@ -12,12 +12,19 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+import { Route as CarouselIndexImport } from './routes/carousel/index'
 
 // Create/Update Routes
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CarouselIndexRoute = CarouselIndexImport.update({
+  id: '/carousel/',
+  path: '/carousel/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -32,6 +39,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/carousel/': {
+      id: '/carousel/'
+      path: '/carousel'
+      fullPath: '/carousel'
+      preLoaderRoute: typeof CarouselIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -39,32 +53,37 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/carousel': typeof CarouselIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/carousel': typeof CarouselIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/carousel/': typeof CarouselIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/carousel'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/carousel'
+  id: '__root__' | '/' | '/carousel/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CarouselIndexRoute: typeof CarouselIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CarouselIndexRoute: CarouselIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -77,11 +96,15 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/"
+        "/",
+        "/carousel/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/carousel/": {
+      "filePath": "carousel/index.tsx"
     }
   }
 }
