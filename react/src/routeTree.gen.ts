@@ -12,6 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+import { Route as SvgIndexImport } from './routes/svg/index'
 import { Route as CarouselIndexImport } from './routes/carousel/index'
 
 // Create/Update Routes
@@ -19,6 +20,12 @@ import { Route as CarouselIndexImport } from './routes/carousel/index'
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SvgIndexRoute = SvgIndexImport.update({
+  id: '/svg/',
+  path: '/svg/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,6 +53,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CarouselIndexImport
       parentRoute: typeof rootRoute
     }
+    '/svg/': {
+      id: '/svg/'
+      path: '/svg'
+      fullPath: '/svg'
+      preLoaderRoute: typeof SvgIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -54,36 +68,41 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/carousel': typeof CarouselIndexRoute
+  '/svg': typeof SvgIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/carousel': typeof CarouselIndexRoute
+  '/svg': typeof SvgIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/carousel/': typeof CarouselIndexRoute
+  '/svg/': typeof SvgIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/carousel'
+  fullPaths: '/' | '/carousel' | '/svg'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/carousel'
-  id: '__root__' | '/' | '/carousel/'
+  to: '/' | '/carousel' | '/svg'
+  id: '__root__' | '/' | '/carousel/' | '/svg/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CarouselIndexRoute: typeof CarouselIndexRoute
+  SvgIndexRoute: typeof SvgIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CarouselIndexRoute: CarouselIndexRoute,
+  SvgIndexRoute: SvgIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,7 +116,8 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/carousel/"
+        "/carousel/",
+        "/svg/"
       ]
     },
     "/": {
@@ -105,6 +125,9 @@ export const routeTree = rootRoute
     },
     "/carousel/": {
       "filePath": "carousel/index.tsx"
+    },
+    "/svg/": {
+      "filePath": "svg/index.tsx"
     }
   }
 }
