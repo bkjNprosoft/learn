@@ -45,11 +45,10 @@
 } */
 
 
-html {
+:root {
   font-family: 'Nanum Gothic', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* scrollbar-width: none; */
   scrollbar-width: 4px;
-  font-size: 62.5%; /* 10 px */
 }
 
 

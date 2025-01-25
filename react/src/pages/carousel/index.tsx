@@ -1,4 +1,4 @@
-import { Carousel01, Carousel01Item } from '../components/carausel/Carousel01';
+import { Carousel01, Carousel01Item } from '../../components/carausel/Carousel01';
 
 const CarouselPage = () => {
   const cardList: Carousel01Item[] = [

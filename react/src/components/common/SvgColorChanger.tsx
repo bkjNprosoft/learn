@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-const SvgComponent: React.FC<{ url: string, color: string }> = ({ url: svgUrl, color }) => {
+const SvgColorChanger: React.FC<{ url: string, color: string }> = ({ url: svgUrl, color }) => {
   const svgRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -36,4 +36,4 @@ const SvgComponent: React.FC<{ url: string, color: string }> = ({ url: svgUrl, c
   return <div ref={svgRef} className='absolute top-0 left-0 w-full h-full' />;
 };
 
-export default SvgComponent;
+export default SvgColorChanger;
