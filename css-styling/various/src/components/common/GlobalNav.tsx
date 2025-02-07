@@ -22,6 +22,7 @@ const Menu = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: React.Dispatc
           <Link to='/svg' className='py-2 px-4 hover:bg-[#888]'>SVG</Link>
           <Link to='/carousel' className='py-2 px-4 hover:bg-[#888]'>Carousel</Link>
           <Link to='/reflection' className='py-2 px-4 hover:bg-[#888]'>Reflection</Link>
+          <Link to='/graph' className='py-2 px-4 hover:bg-[#888]'>Graph</Link>
         </nav>
       </div>
     </div>

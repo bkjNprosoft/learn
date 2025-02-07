@@ -14,6 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as SvgIndexImport } from './routes/svg/index'
 import { Route as ReflectionIndexImport } from './routes/reflection/index'
+import { Route as GraphIndexImport } from './routes/graph/index'
 import { Route as CarouselIndexImport } from './routes/carousel/index'
 
 // Create/Update Routes
@@ -33,6 +34,12 @@ const SvgIndexRoute = SvgIndexImport.update({
 const ReflectionIndexRoute = ReflectionIndexImport.update({
   id: '/reflection/',
   path: '/reflection/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const GraphIndexRoute = GraphIndexImport.update({
+  id: '/graph/',
+  path: '/graph/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -60,6 +67,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CarouselIndexImport
       parentRoute: typeof rootRoute
     }
+    '/graph/': {
+      id: '/graph/'
+      path: '/graph'
+      fullPath: '/graph'
+      preLoaderRoute: typeof GraphIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/reflection/': {
       id: '/reflection/'
       path: '/reflection'
@@ -82,6 +96,7 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/carousel': typeof CarouselIndexRoute
+  '/graph': typeof GraphIndexRoute
   '/reflection': typeof ReflectionIndexRoute
   '/svg': typeof SvgIndexRoute
 }
@@ -89,6 +104,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/carousel': typeof CarouselIndexRoute
+  '/graph': typeof GraphIndexRoute
   '/reflection': typeof ReflectionIndexRoute
   '/svg': typeof SvgIndexRoute
 }
@@ -97,22 +113,24 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/carousel/': typeof CarouselIndexRoute
+  '/graph/': typeof GraphIndexRoute
   '/reflection/': typeof ReflectionIndexRoute
   '/svg/': typeof SvgIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/carousel' | '/reflection' | '/svg'
+  fullPaths: '/' | '/carousel' | '/graph' | '/reflection' | '/svg'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/carousel' | '/reflection' | '/svg'
-  id: '__root__' | '/' | '/carousel/' | '/reflection/' | '/svg/'
+  to: '/' | '/carousel' | '/graph' | '/reflection' | '/svg'
+  id: '__root__' | '/' | '/carousel/' | '/graph/' | '/reflection/' | '/svg/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CarouselIndexRoute: typeof CarouselIndexRoute
+  GraphIndexRoute: typeof GraphIndexRoute
   ReflectionIndexRoute: typeof ReflectionIndexRoute
   SvgIndexRoute: typeof SvgIndexRoute
 }
@@ -120,6 +138,7 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CarouselIndexRoute: CarouselIndexRoute,
+  GraphIndexRoute: GraphIndexRoute,
   ReflectionIndexRoute: ReflectionIndexRoute,
   SvgIndexRoute: SvgIndexRoute,
 }
@@ -136,6 +155,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/carousel/",
+        "/graph/",
         "/reflection/",
         "/svg/"
       ]
@@ -145,6 +165,9 @@ export const routeTree = rootRoute
     },
     "/carousel/": {
       "filePath": "carousel/index.tsx"
+    },
+    "/graph/": {
+      "filePath": "graph/index.tsx"
     },
     "/reflection/": {
       "filePath": "reflection/index.tsx"
