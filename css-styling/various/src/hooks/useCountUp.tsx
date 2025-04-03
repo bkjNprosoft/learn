@@ -1,101 +1,69 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-export const useCountUpLinear = (end: number, start = 0, duration = 2000) => {
+const easeFunctions = {
+  linear: (t: number): number => t,
+  sine: (t: number): number => (t === 1 ? 1 : Math.sin(t * (Math.PI / 2))),
+  quad: (t: number): number => t * (2 - t),
+  expo: (t: number): number => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+};
+
+interface Props {
+  start?: number;
+  end?: number;
+  durationSet?: number;
+  ease: keyof typeof easeFunctions;
+}
+
+const useCountUp = ({
+  start = 0,
+  end = 100,
+  durationSet = 1000,
+  ease,
+}: Props) => {
   const [count, setCount] = useState(start);
+  const [startCount, setStartCount] = useState(start);
+  const [endCount, setEndCount] = useState(end);
+  const [play, setPlay] = useState(false);
+  const [duration, setDuration] = useState(durationSet);
   const frameRate = 1000 / 60;
   const totalFrame = Math.round(duration / frameRate);
 
   useEffect(() => {
-    let currentNumber = start;
+    if (!play) return;
+    setCount(startCount); // reset count to initial value
+    let currentNumber = startCount;
     const counter = setInterval(() => {
       currentNumber++;
-      const progress = currentNumber / totalFrame;
-      setCount(Math.round(end * Math.min(progress, 1)));
+      const progress = easeFunctions[ease](currentNumber / totalFrame);
+      setCount(Math.round(endCount * progress));
 
       if (progress >= 1) {
         clearInterval(counter);
+        setPlay(false);
       }
     }, frameRate);
 
     return () => clearInterval(counter);
-  }, [end, frameRate, start, totalFrame]);
+  }, [play, startCount, endCount, frameRate, totalFrame, ease]);
 
-  return count;
+  return {
+    play,
+    count,
+    startCount,
+    endCount,
+    duration,
+    setPlay,
+    setStartCount,
+    setEndCount,
+    setDuration,
+  };
 };
 
-const easeOutSine = (t: number): number => t === 1 ? 1 : Math.sin(t * (Math.PI / 2));
-
-export const useCountUpEaseOutSine = (end: number, start = 0, duration = 2000) => {
-  const [count, setCount] = useState(start);
-  const frameRate = 1000 / 60;
-  const totalFrame = Math.round(duration / frameRate);
-
-  useEffect(() => {
-    let currentNumber = start;
-    const counter = setInterval(() => {
-      currentNumber++;
-      const progress = easeOutSine(currentNumber / totalFrame);
-      setCount(Math.round(end * progress));
-
-      if (progress >= 1) {
-        clearInterval(counter);
-      }
-    }, frameRate);
-
-    return () => clearInterval(counter);
-  }, [end, frameRate, start, totalFrame]);
-
-  return count;
-};
-
-const easeOutQuad = (t: number): number => t * (2 - t);
-
-export const useCountUpEaseOutQuad = (end: number, start = 0, duration = 2000) => {
-  const [count, setCount] = useState(start);
-  const frameRate = 1000 / 60;
-  const totalFrame = Math.round(duration / frameRate);
-
-  useEffect(() => {
-    let currentNumber = start;
-    const counter = setInterval(() => {
-      currentNumber++;
-      const progress = easeOutQuad(currentNumber / totalFrame);
-      setCount(Math.round(end * progress));
-
-      if (currentNumber >= totalFrame) {
-        clearInterval(counter);
-      }
-    }, frameRate);
-
-    return () => clearInterval(counter);
-  }, [end, frameRate, start, totalFrame]);
-
-  return count;
-};
-
-
-const easeOutExpo = (t: number): number => t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
-
-export const useCountUpEaseOutExpo = (end: number, start = 0, duration = 2000) => {
-  const [count, setCount] = useState(start);
-  const frameRate = 1000 / 60;
-  const totalFrame = Math.round(duration / frameRate);
-
-  useEffect(() => {
-    let currentNumber = start;
-    const counter = setInterval(() => {
-      currentNumber++;
-      const progress = easeOutExpo(currentNumber / totalFrame);
-      setCount(Math.round(end * progress));
-
-      if (progress >= 1) {
-        clearInterval(counter);
-      }
-    }, frameRate);
-
-    return () => clearInterval(counter);
-  }, [end, frameRate, start, totalFrame]);
-
-  return count;
-};
-
+export const useCountUpLinear = (props: Omit<Props, "ease">) =>
+  useCountUp({ ...props, ease: "linear" });
+export const useCountUpEaseOutSine = (props: Omit<Props, "ease">) =>
+  useCountUp({ ...props, ease: "sine" });
+export const useCountUpEaseOutQuad = (props: Omit<Props, "ease">) =>
+  useCountUp({ ...props, ease: "quad" });
+export const useCountUpEaseOutExpo = (props: Omit<Props, "ease">) =>
+  useCountUp({ ...props, ease: "expo" });
