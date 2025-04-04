@@ -1,11 +1,7 @@
-import { useGlobalNavOpenState } from "@/stores/store";
-
 const ReflectionPage = () => {
-  const isOpen = useGlobalNavOpenState((state) => state.isOpen);
-
   return (
     <main
-      className={`flex gap-[50px] ${isOpen ? "ml-[200px]" : "ml-[50px]"} transition-all duration-700 min-h-screen p-[10px] bg-black`}
+      className={`relative flex justify-between min-h-screen p-[20px] bg-black`}
     >
       <BoxReflection />
       <MaskImgReflection />

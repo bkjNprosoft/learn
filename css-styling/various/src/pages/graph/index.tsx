@@ -1,15 +1,11 @@
 import DoughnutGraph02 from "@/components/common/DoughnutGraph02";
-import { useGlobalNavOpenState } from "@/stores/store";
 import { useMemo, useState } from "react";
 import DoughnutGraph01 from "@/components/common/DoughnutGraph01";
 import { useCountUpEaseOutSine } from "@/hooks/useCountUp";
 
 const GraphPage = () => {
-  const isOpen = useGlobalNavOpenState((state) => state.isOpen);
   return (
-    <main
-      className={`${isOpen ? "ml-[200px]" : "ml-[50px]"} transition-all duration-700`}
-    >
+    <main className="relative">
       <DoughnutGraphSection />
     </main>
   );

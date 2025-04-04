@@ -44,10 +44,16 @@ const Menu = ({
             Graph
           </Link>
           <Link
-            to="/parallax_scrolling_video"
+            to="/parallax_scroll_video"
             className="py-2 px-4 hover:bg-[#888]"
           >
             Parallax scrolling Video
+          </Link>
+          <Link
+            to="/parallax_scroll_image"
+            className="py-2 px-4 hover:bg-[#888]"
+          >
+            Parallax scrolling Image
           </Link>
         </nav>
       </div>
