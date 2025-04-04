@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 export interface Carousel01Item {
   imgSrc: string;
@@ -6,7 +6,9 @@ export interface Carousel01Item {
 }
 
 export const Carousel01 = ({ cardList }: { cardList: Carousel01Item[] }) => {
-  const [currentCardList, setCurrentCardList] = useState<Carousel01Item[] | null>(cardList);
+  const [currentCardList, setCurrentCardList] = useState<
+    Carousel01Item[] | null
+  >(cardList);
   const [currentSlideIdx, setCurrentSlideIdx] = useState(0);
   const [cardViewCount] = useState(3);
   const [slidePageCount] = useState(Math.ceil(cardList.length / cardViewCount));
@@ -80,18 +82,23 @@ export const Carousel01 = ({ cardList }: { cardList: Carousel01Item[] }) => {
     return (
       <button
         className="relative flex justify-center items-center w-[36px] h-[36px] rounded-full z-[1]"
-        style={{ background: `linear-gradient(180deg, #A242AF 0%, #783282 100%)` }}
-        onClick={isRight ? () => handleRightBtnClick() : () => handleLeftBtnClick()}
+        style={{
+          background: `linear-gradient(180deg, #A242AF 0%, #783282 100%)`,
+        }}
+        onClick={
+          isRight ? () => handleRightBtnClick() : () => handleLeftBtnClick()
+        }
       >
-        <span className={`
+        <span
+          className={`
           absolute top-[50%] translate-y-[-50%] w-[30%] h-[30%] border-t-[3px] border-r-[3px] border-[#fff]
-          ${isRight ? 'right-[35%] rotate-45' : 'left-[40%] rotate-[225deg]'}`}
+          ${isRight ? "right-[35%] rotate-45" : "left-[40%] rotate-[225deg]"}`}
         />
       </button>
     );
   };
 
-  const Card = ({ imgSrc, text }: { imgSrc: string, text: string }) => {
+  const Card = ({ imgSrc, text }: { imgSrc: string; text: string }) => {
     return (
       <div className="flex flex-col w-[382px] animate-fade-in-0.2">
         <img
@@ -117,9 +124,17 @@ export const Carousel01 = ({ cardList }: { cardList: Carousel01Item[] }) => {
         {slidePageCount > 1 && <ArrowBtn />}
         <div className="relative flex flex-col items-center gap-[42px] w-[1186px]">
           <div className="relative flex justify-center items-center gap-[20px]">
-            {currentCardList?.map((item, index) => <Card key={index} imgSrc={item.imgSrc} text={item.title} />)}
+            {currentCardList?.map((item, index) => (
+              <Card key={index} imgSrc={item.imgSrc} text={item.title} />
+            ))}
           </div>
-          {slidePageCount > 1 && <SlidePaging activeIdx={currentSlideIdx} length={slidePageCount} goToSlide={goToSlide} />}
+          {slidePageCount > 1 && (
+            <SlidePaging
+              activeIdx={currentSlideIdx}
+              length={slidePageCount}
+              goToSlide={goToSlide}
+            />
+          )}
         </div>
         {slidePageCount > 1 && <ArrowBtn isRight />}
       </div>
@@ -127,22 +142,30 @@ export const Carousel01 = ({ cardList }: { cardList: Carousel01Item[] }) => {
   );
 };
 
-const SlidePaging = ({ activeIdx, length, goToSlide }: { activeIdx: number, length: number, goToSlide?: (index: number) => void }) => {
+const SlidePaging = ({
+  activeIdx,
+  length,
+  goToSlide,
+}: {
+  activeIdx: number;
+  length: number;
+  goToSlide?: (index: number) => void;
+}) => {
   const [array] = useState(Array.from({ length }, () => null));
 
   return (
     <div className="flex gap-[8px]">
-      {array.map((_, index) =>
+      {array.map((_, index) => (
         <span
           key={index}
           className={`
             h-[8px] rounded-[30px] transition-all duration-300 ease-in-out
-            ${activeIdx == index ? 'w-[36px] bg-[#783282]' : 'w-[28px] bg-[#777]'}
-            ${goToSlide && 'cursor-pointer'}
+            ${activeIdx == index ? "w-[36px] bg-[#783282]" : "w-[28px] bg-[#777]"}
+            ${goToSlide && "cursor-pointer"}
           `}
-          onClick={() => { goToSlide && goToSlide(index); }}
+          onClick={() => goToSlide && goToSlide(index)}
         />
-      )}
+      ))}
     </div>
   );
 };
