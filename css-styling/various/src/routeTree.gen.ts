@@ -14,6 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as SvgIndexImport } from './routes/svg/index'
 import { Route as ReflectionIndexImport } from './routes/reflection/index'
+import { Route as ParallaxscrollingvideoIndexImport } from './routes/parallax_scrolling_video/index'
 import { Route as GraphIndexImport } from './routes/graph/index'
 import { Route as CarouselIndexImport } from './routes/carousel/index'
 
@@ -36,6 +37,13 @@ const ReflectionIndexRoute = ReflectionIndexImport.update({
   path: '/reflection/',
   getParentRoute: () => rootRoute,
 } as any)
+
+const ParallaxscrollingvideoIndexRoute =
+  ParallaxscrollingvideoIndexImport.update({
+    id: '/parallax_scrolling_video/',
+    path: '/parallax_scrolling_video/',
+    getParentRoute: () => rootRoute,
+  } as any)
 
 const GraphIndexRoute = GraphIndexImport.update({
   id: '/graph/',
@@ -74,6 +82,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GraphIndexImport
       parentRoute: typeof rootRoute
     }
+    '/parallax_scrolling_video/': {
+      id: '/parallax_scrolling_video/'
+      path: '/parallax_scrolling_video'
+      fullPath: '/parallax_scrolling_video'
+      preLoaderRoute: typeof ParallaxscrollingvideoIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/reflection/': {
       id: '/reflection/'
       path: '/reflection'
@@ -97,6 +112,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/carousel': typeof CarouselIndexRoute
   '/graph': typeof GraphIndexRoute
+  '/parallax_scrolling_video': typeof ParallaxscrollingvideoIndexRoute
   '/reflection': typeof ReflectionIndexRoute
   '/svg': typeof SvgIndexRoute
 }
@@ -105,6 +121,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/carousel': typeof CarouselIndexRoute
   '/graph': typeof GraphIndexRoute
+  '/parallax_scrolling_video': typeof ParallaxscrollingvideoIndexRoute
   '/reflection': typeof ReflectionIndexRoute
   '/svg': typeof SvgIndexRoute
 }
@@ -114,16 +131,36 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/carousel/': typeof CarouselIndexRoute
   '/graph/': typeof GraphIndexRoute
+  '/parallax_scrolling_video/': typeof ParallaxscrollingvideoIndexRoute
   '/reflection/': typeof ReflectionIndexRoute
   '/svg/': typeof SvgIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/carousel' | '/graph' | '/reflection' | '/svg'
+  fullPaths:
+    | '/'
+    | '/carousel'
+    | '/graph'
+    | '/parallax_scrolling_video'
+    | '/reflection'
+    | '/svg'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/carousel' | '/graph' | '/reflection' | '/svg'
-  id: '__root__' | '/' | '/carousel/' | '/graph/' | '/reflection/' | '/svg/'
+  to:
+    | '/'
+    | '/carousel'
+    | '/graph'
+    | '/parallax_scrolling_video'
+    | '/reflection'
+    | '/svg'
+  id:
+    | '__root__'
+    | '/'
+    | '/carousel/'
+    | '/graph/'
+    | '/parallax_scrolling_video/'
+    | '/reflection/'
+    | '/svg/'
   fileRoutesById: FileRoutesById
 }
 
@@ -131,6 +168,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CarouselIndexRoute: typeof CarouselIndexRoute
   GraphIndexRoute: typeof GraphIndexRoute
+  ParallaxscrollingvideoIndexRoute: typeof ParallaxscrollingvideoIndexRoute
   ReflectionIndexRoute: typeof ReflectionIndexRoute
   SvgIndexRoute: typeof SvgIndexRoute
 }
@@ -139,6 +177,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CarouselIndexRoute: CarouselIndexRoute,
   GraphIndexRoute: GraphIndexRoute,
+  ParallaxscrollingvideoIndexRoute: ParallaxscrollingvideoIndexRoute,
   ReflectionIndexRoute: ReflectionIndexRoute,
   SvgIndexRoute: SvgIndexRoute,
 }
@@ -156,6 +195,7 @@ export const routeTree = rootRoute
         "/",
         "/carousel/",
         "/graph/",
+        "/parallax_scrolling_video/",
         "/reflection/",
         "/svg/"
       ]
@@ -168,6 +208,9 @@ export const routeTree = rootRoute
     },
     "/graph/": {
       "filePath": "graph/index.tsx"
+    },
+    "/parallax_scrolling_video/": {
+      "filePath": "parallax_scrolling_video/index.tsx"
     },
     "/reflection/": {
       "filePath": "reflection/index.tsx"

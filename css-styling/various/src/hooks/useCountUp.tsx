@@ -14,14 +14,8 @@ interface Props {
   ease: keyof typeof easeFunctions;
 }
 
-const useCountUp = ({
-  start = 0,
-  end = 100,
-  durationSet = 1000,
-  ease,
-}: Props) => {
-  const [count, setCount] = useState(start);
-  const [startCount, setStartCount] = useState(start);
+const useCountUp = ({ end = 100, durationSet = 1000, ease }: Props) => {
+  const [count, setCount] = useState(0);
   const [endCount, setEndCount] = useState(end);
   const [play, setPlay] = useState(false);
   const [duration, setDuration] = useState(durationSet);
@@ -30,8 +24,8 @@ const useCountUp = ({
 
   useEffect(() => {
     if (!play) return;
-    setCount(startCount); // reset count to initial value
-    let currentNumber = startCount;
+    setCount(0);
+    let currentNumber = 0;
     const counter = setInterval(() => {
       currentNumber++;
       const progress = easeFunctions[ease](currentNumber / totalFrame);
@@ -44,16 +38,14 @@ const useCountUp = ({
     }, frameRate);
 
     return () => clearInterval(counter);
-  }, [play, startCount, endCount, frameRate, totalFrame, ease]);
+  }, [play, endCount, frameRate, totalFrame, ease]);
 
   return {
     play,
     count,
-    startCount,
     endCount,
     duration,
     setPlay,
-    setStartCount,
     setEndCount,
     setDuration,
   };
