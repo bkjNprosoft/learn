@@ -10,7 +10,7 @@ const Component = () => {
     <>
       <GlobalNav />
       <main
-        className={`${isOpen ? "pl-[200px]" : "pl-[50px]"} transition-all duration-700`}
+        className={`${isOpen ? "ml-[200px]" : "ml-[50px]"} transition-all duration-700`}
       >
         <Outlet />
       </main>
