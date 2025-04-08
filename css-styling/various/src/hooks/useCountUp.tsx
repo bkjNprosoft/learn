@@ -10,15 +10,15 @@ const easeFunctions = {
 interface Props {
   start?: number;
   end?: number;
-  durationSet?: number;
+  initDuration?: number;
   ease: keyof typeof easeFunctions;
 }
 
-const useCountUp = ({ end = 100, durationSet = 1000, ease }: Props) => {
+const useCountUp = ({ end = 100, initDuration = 1000, ease }: Props) => {
   const [count, setCount] = useState(0);
   const [endCount, setEndCount] = useState(end);
   const [play, setPlay] = useState(false);
-  const [duration, setDuration] = useState(durationSet);
+  const [duration, setDuration] = useState(initDuration);
   const frameRate = 1000 / 60;
   const totalFrame = Math.round(duration / frameRate);
 

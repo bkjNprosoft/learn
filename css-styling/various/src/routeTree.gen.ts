@@ -12,6 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+import { Route as TiltcardIndexImport } from './routes/tilt_card/index'
 import { Route as SvgIndexImport } from './routes/svg/index'
 import { Route as ReflectionIndexImport } from './routes/reflection/index'
 import { Route as ParallaxscrollvideoIndexImport } from './routes/parallax_scroll_video/index'
@@ -24,6 +25,12 @@ import { Route as CarouselIndexImport } from './routes/carousel/index'
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TiltcardIndexRoute = TiltcardIndexImport.update({
+  id: '/tilt_card/',
+  path: '/tilt_card/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -116,6 +123,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SvgIndexImport
       parentRoute: typeof rootRoute
     }
+    '/tilt_card/': {
+      id: '/tilt_card/'
+      path: '/tilt_card'
+      fullPath: '/tilt_card'
+      preLoaderRoute: typeof TiltcardIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -129,6 +143,7 @@ export interface FileRoutesByFullPath {
   '/parallax_scroll_video': typeof ParallaxscrollvideoIndexRoute
   '/reflection': typeof ReflectionIndexRoute
   '/svg': typeof SvgIndexRoute
+  '/tilt_card': typeof TiltcardIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -139,6 +154,7 @@ export interface FileRoutesByTo {
   '/parallax_scroll_video': typeof ParallaxscrollvideoIndexRoute
   '/reflection': typeof ReflectionIndexRoute
   '/svg': typeof SvgIndexRoute
+  '/tilt_card': typeof TiltcardIndexRoute
 }
 
 export interface FileRoutesById {
@@ -150,6 +166,7 @@ export interface FileRoutesById {
   '/parallax_scroll_video/': typeof ParallaxscrollvideoIndexRoute
   '/reflection/': typeof ReflectionIndexRoute
   '/svg/': typeof SvgIndexRoute
+  '/tilt_card/': typeof TiltcardIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -162,6 +179,7 @@ export interface FileRouteTypes {
     | '/parallax_scroll_video'
     | '/reflection'
     | '/svg'
+    | '/tilt_card'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -171,6 +189,7 @@ export interface FileRouteTypes {
     | '/parallax_scroll_video'
     | '/reflection'
     | '/svg'
+    | '/tilt_card'
   id:
     | '__root__'
     | '/'
@@ -180,6 +199,7 @@ export interface FileRouteTypes {
     | '/parallax_scroll_video/'
     | '/reflection/'
     | '/svg/'
+    | '/tilt_card/'
   fileRoutesById: FileRoutesById
 }
 
@@ -191,6 +211,7 @@ export interface RootRouteChildren {
   ParallaxscrollvideoIndexRoute: typeof ParallaxscrollvideoIndexRoute
   ReflectionIndexRoute: typeof ReflectionIndexRoute
   SvgIndexRoute: typeof SvgIndexRoute
+  TiltcardIndexRoute: typeof TiltcardIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -201,6 +222,7 @@ const rootRouteChildren: RootRouteChildren = {
   ParallaxscrollvideoIndexRoute: ParallaxscrollvideoIndexRoute,
   ReflectionIndexRoute: ReflectionIndexRoute,
   SvgIndexRoute: SvgIndexRoute,
+  TiltcardIndexRoute: TiltcardIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -219,7 +241,8 @@ export const routeTree = rootRoute
         "/parallax_scroll_image/",
         "/parallax_scroll_video/",
         "/reflection/",
-        "/svg/"
+        "/svg/",
+        "/tilt_card/"
       ]
     },
     "/": {
@@ -242,6 +265,9 @@ export const routeTree = rootRoute
     },
     "/svg/": {
       "filePath": "svg/index.tsx"
+    },
+    "/tilt_card/": {
+      "filePath": "tilt_card/index.tsx"
     }
   }
 }

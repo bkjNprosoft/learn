@@ -47,13 +47,16 @@ const Menu = ({
             to="/parallax_scroll_video"
             className="py-2 px-4 hover:bg-[#888]"
           >
-            Parallax scrolling Video
+            Parallax scroll Video
           </Link>
           <Link
             to="/parallax_scroll_image"
             className="py-2 px-4 hover:bg-[#888]"
           >
-            Parallax scrolling Image
+            Parallax scroll Image
+          </Link>
+          <Link to="/tilt_card" className="py-2 px-4 hover:bg-[#888]">
+            Tilt Card
           </Link>
         </nav>
       </div>

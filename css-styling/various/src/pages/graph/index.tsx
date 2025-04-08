@@ -17,7 +17,7 @@ const DoughnutGraphSection = () => {
   const [inputDuration, setInputDuration] = useState(1000);
 
   const { count, endCount, setPlay, setEndCount, setDuration } =
-    useCountUpEaseOutSine({ start: 0, end: 100, durationSet: 1000 });
+    useCountUpEaseOutSine({ start: 0, end: 100, initDuration: 1000 });
 
   const handleStart = () => {
     setEndCount(inputEndCount);

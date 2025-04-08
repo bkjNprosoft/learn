@@ -1,7 +1,7 @@
 const ReflectionPage = () => {
   return (
     <main
-      className={`relative flex justify-between min-h-screen p-[20px] bg-black`}
+      className={`relative flex justify-center gap-[50px] min-h-screen p-[20px] bg-black`}
     >
       <BoxReflection />
       <MaskImgReflection />
